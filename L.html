@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Meu IP</title>
+<style>
+  body { display:flex; justify-content:center; align-items:center; height:100vh; font-family:sans-serif; background:#222; color:#0bf; }
+  .ip { font-size:2rem; }
+</style>
+</head>
+<body>
+<div class="ip" id="ip">Detectando IP…</div>
+<script>
+async function fetchIP() {
+  try {
+    const res = await fetch('https://api.ipify.org?format=json');
+    const data = await res.json();
+    document.getElementById('ip').textContent = data.ip;
+  } catch(e) {
+    document.getElementById('ip').textContent = 'Erro ao detectar IP';
+  }
+}
+fetchIP();
+</script>
+</body>
+</html>
